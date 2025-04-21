@@ -2020,11 +2020,12 @@ def cmd_update_run(forced_update, cmd_msg, net_msg):
                                                     break
 
                                 # Check the ack
-                                if _o < 256: # for indexing error
-                                    if ((flash_ack[8 + (_o//8)] >> (_o%8)) & 0x01) == 0:
-                                        continue
-                                    else:
-                                        break
+                                if (len(flash_ack) == (34 + 8) and flash_ack[:6] == ack_header):
+                                    if _o < 256: # for indexing error
+                                        if ((flash_ack[8 + (_o//8)] >> (_o%8)) & 0x01) == 0:
+                                            continue
+                                        else:
+                                            break
 
                             if _o%8 == 0:
                                 prog_bar_str = prog_bar_str.replace('_', '>', 1)
