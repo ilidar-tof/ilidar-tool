@@ -28,7 +28,7 @@ else:
 
 #### CONSTANT ####
 # Script version
-ilidar_tool_version = "1.1.7"   # Version of this script
+ilidar_tool_version = "1.1.9"   # Version of this script
 # V 1.1.0   Intial release version of united ilidar-tool.py
 # V 1.1.1   Fixed
 #            - fix subnet mask error on ubuntu with 'ifconfig' command
@@ -47,6 +47,8 @@ ilidar_tool_version = "1.1.7"   # Version of this script
 #            - indexing error in update process was fixed
 # V 1.1.7   Fixed
 #            - invalid sockConfig changed to sock['config']
+# V 1.1.8~1.1.9   Added
+#            - Added release note and preset files (no change in this script!)
 
 
 #### LOCAL FUNCTION DEFINITIONS ####

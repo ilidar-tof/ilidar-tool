@@ -1,7 +1,7 @@
 # iLidar Configuration Tool
 Python script used to set up the iTFS sensor and update the firmware.
 
-Available for firmware version `1.5.0` and later.
+Available for iTFS firmware version `1.5.0` and later.
 
 ## Preparation
 
@@ -14,15 +14,6 @@ Available for firmware version `1.5.0` and later.
 $ python ilidar-tool.py <command> [arguments ...] [options ...]
 ```
 
-### Binary version (in development)
-In Windows,
-```
-> ilidar-tool.exe <command> [arguments ...] [options ...]
-```
-In Linux,
-```
-$ ./ilidar-tool <command> [arguments ...] [options ...]
-```
 
 ## List of Commands, Arguments, and Options
 
@@ -40,7 +31,7 @@ $ ./ilidar-tool <command> [arguments ...] [options ...]
 |    `--reset <target>`     | Restores the LiDAR's parameter settings to the factory default state.<br> **Target arguments are mandatory.**                                                                                                                                                        |
 |  `--config <json\|dir>`   | Reads parameter configuration files (`json`), searches for LiDARs on the file, and sets their parameters from the files.<br> To configure many LiDARs, put `dir path` on the argument field. (This will read all files in that directory)                   |
 | `--convert <csv> <json>`  | Converts parameter configuration files in `csv` format to `json` format.<br> Both arguments are mandatory.                                                                                                                                              |
-|    `--update <target>`    | Reads a firmware file (bin) and updates the firmware of the connected LiDARs with the corresponding firmware file.<br> The firmware file must be located in the `/bin` directory. (For the latest firmware files, please contact the manufacturer, HYBO)        |
+|    `--update <target>`    | Reads a firmware file (bin) and updates the firmware of the connected LiDARs with the corresponding firmware file.<br> The firmware file must be located in the `/bin` directory. (For the latest firmware files, please contact the manufacturer, **HYBO Inc.**)        |
 |  `--overwrite <target>`   | Performs the same operation as the `--update` command but forces overwriting even if the files has older version.                                                                                                                                               |
 
 ### Arguments
@@ -163,9 +154,9 @@ When using the redirect command, it may not be helpful to include the serial num
 
 ### Factory Reset
 
-Factory resets the behavior parameters of the iTFS sensor. The value of <Target> must be explicitly specified as a serial number or IP address.
+Factory reset the behavior parameters of the iTFS sensor. The value of <Target> must be explicitly specified as a serial number or IP address.
 
-- Factory Reset IP address `192.168.5.123` and `192.168.5.124`
+- Factory reset IP address `192.168.5.123` and `192.168.5.124`
   
   `python ilidar-tool.py --reset 192.168.5.123 192.168.5.124`
 
@@ -181,6 +172,8 @@ The `--config <json\|dir>` command reads the configuration information specified
 
 The `--config` command finds the connected sensor based on serial number, so the sensor's `data_dest_ip` and `data_dest_port` values must match the information in senders. 
 
+For more information about the configuration presets, please refer to `/preset/how_to_use_presets.md`.
+
 ### Firmware Update
 
 The `--update <target>` and `--overwrite <target>` commands are used for firmware updates. The `--update` command compares the current firmware version of the sensor with the firmware version to be updated, and performs a firmware update if necessary. The `--overwrite` command overwrites the firmware file without comparing versions. Updating the firmware requires the sensor's firmware binary file in the `/bin` folder. 
@@ -188,6 +181,15 @@ The `--update <target>` and `--overwrite <target>` commands are used for firmwar
 1. Place the firmware file to be updated inside the `/bin` folder.
 2. Enter `python ilidar-tool.py --update <target>`.
 3. If it enter the firmware update normally, the following procedure happens automatically: Safe boot → Firmware transfer → Reboot → Start operation.
+
+For the latest firmware files, please contact the manufacturer, **HYBO Inc.**
+
+## Known Issues
+
+#### Infinite wait during firmware update
+
+During a firmware update via `ilidar-tool.py`, `ilidar-tool.py` could get stuck in an infinite wait state. In most cases, forcing a shutdown with `Ctrl+C` and restarting resolves the issue. Specifying user network parameters with `-S` or `--sender` may help prevent the issue.
+
 
 ## License
 All example projects are licensed under the MIT License. Copyright 2022-Present HYBO Inc.  

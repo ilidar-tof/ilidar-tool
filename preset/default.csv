@@ -1,0 +1,2 @@
+sensor_name,ilidar_version,sensor_sn,capture_mode,capture_row,capture_shutter,,,,,capture_limit,,capture_period_us,capture_seq,data_output,data_baud,data_sensor_ip,data_dest_ip,data_subnet,data_gateway,data_port,data_mac_addr,sync,sync_trig_delay_us,sync_ill_delay_us,,,,,,,,,,,,,,,sync_trig_trim_us,sync_ill_trim_us,sync_output_delay_us,arb,arb_timeout
+sensor_00,1.5.X,100,1,160,400,80,16,0,8000,200,200,80000,0,7,115200,,,,,,,1,0,4760,4760,4760,4920,4760,4760,4760,9232,1650,1650,1650,0,0,0,0,4,2,0,0,300000
